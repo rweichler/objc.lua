@@ -21,6 +21,10 @@ function default()
     deb:make_deb()
 end
 
+function info()
+    deb:print_packageinfo()
+end
+
 function clean()
     os.pexecute("rm -rf "..deb.output.." "..deb.input)
 end
