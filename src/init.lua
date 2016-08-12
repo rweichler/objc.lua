@@ -10,7 +10,7 @@ local cast = ffi.cast
 local OSX = ffi.os == 'OSX'
 local x64 = ffi.abi'64bit'
 
-if OSX and ffi.arch ~= 'arm' then
+if OSX then
 	ffi.load('libobjc.A.dylib', true)
 end
 
