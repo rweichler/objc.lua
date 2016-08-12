@@ -2104,7 +2104,7 @@ local function tolua(obj) --convert an objc object that converts naturally to a 
 		return obj:UTF8String()
 	elseif isa(obj, objc.NSDictionary) then
 		local t = {}
-		local count = tonumber(obj:count())
+		local count = tonumber(obj.count)
 		local vals = ffi.new('id[?]', count)
 		local keys = ffi.new('id[?]', count)
 		obj:getObjects_andKeys(vals, keys)
@@ -2114,7 +2114,7 @@ local function tolua(obj) --convert an objc object that converts naturally to a 
 		return t
 	elseif isa(obj, objc.NSArray) then
 		local t = {}
-		for i = 0, tonumber(obj:count())-1 do
+		for i = 0, tonumber(obj.count)-1 do
 			t[#t+1] = tolua(obj:objectAtIndex(i))
 		end
 		return t
@@ -2250,7 +2250,7 @@ end
 --iterators --------------------------------------------------------------------------------------------------------------
 
 local function array_next(arr, i)
-	if i >= arr:count() then return end
+	if i >= arr.count then return end
 	return i + 1, arr:objectAtIndex(i)
 end
 
