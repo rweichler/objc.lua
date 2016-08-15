@@ -30,3 +30,9 @@ end
 function clean()
     os.pexecute("rm -rf "..deb.output.." "..deb.input)
 end
+
+function install(ip)
+    ip = ip or 'iphone'
+    os.pexecute('scp '..deb.output..' '..ip..':')
+    os.pexecute('ssh '..ip..' "dpkg -i '..deb.output..' && rm '..deb.output..'"')
+end
